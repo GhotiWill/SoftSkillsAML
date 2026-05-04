@@ -73,10 +73,26 @@ namespace SoftSkillsAML.ViewModels
             var achievement = MainWindowViewModel.db.Achievements.FirstOrDefault(x => x.Name == "Айтишник");
             if (achievement == null) return;
 
-            var exists = MainWindowViewModel.db.UserAchievements.Any(x => x.User == CurrentUserId && x.Achievement == achievement.Id);
-            if (exists) return;
+            var userAchievement = MainWindowViewModel.db.UserAchievements
+                .FirstOrDefault(x => x.User == CurrentUserId && x.Achievement == achievement.Id);
 
-            MainWindowViewModel.db.UserAchievements.Add(new UserAchievement { User = CurrentUserId, Achievement = achievement.Id });
+            if (userAchievement == null)
+            {
+                MainWindowViewModel.db.UserAchievements.Add(new UserAchievement
+                {
+                    User = CurrentUserId,
+                    Achievement = achievement.Id,
+                    IsCompleted = true
+                });
+            }
+            else if (!userAchievement.IsCompleted)
+            {
+                userAchievement.IsCompleted = true;
+            }
+            else
+            {
+                return;
+            }
 
             if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop && desktop.MainWindow != null)
             {

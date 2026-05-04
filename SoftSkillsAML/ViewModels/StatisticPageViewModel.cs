@@ -48,7 +48,13 @@ namespace SoftSkillsAML.ViewModels
             var usersAges = MainWindowViewModel.db.Users.Where(x => !x.IsAdmin).ToList().Select(x => GetAge(x.Birthday));
             var values = Enumerable.Range(0, 101).Select(age => usersAges.Count(a => a == age)).ToArray();
 
-            AgeDistributionSeries = [new ColumnSeries<int> { Values = values, Name = "Количество пользователей" }];
+            AgeDistributionSeries = [new ColumnSeries<int>
+            {
+                Values = values,
+                Name = "Количество пользователей",
+                Fill = new SolidColorPaint(new SKColor(68, 160, 141)),
+                Stroke = null
+            }];
             AgeDistributionXAxes = [new Axis { Labels = Enumerable.Range(0, 101).Select(x => x.ToString()).ToArray(), LabelsRotation = 90, TextSize = 10, SeparatorsPaint = new SolidColorPaint(new SKColor(200, 200, 200)) }];
         }
 

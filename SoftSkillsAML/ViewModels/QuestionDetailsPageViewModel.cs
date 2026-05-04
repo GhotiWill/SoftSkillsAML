@@ -53,6 +53,7 @@ namespace SoftSkillsAML.ViewModels
             }
 
 
+            MainWindowViewModel.db.SaveChanges();
             await TryAwardItMasterAchievementAsync();
 
             MainWindowViewModel.db.SaveChanges();

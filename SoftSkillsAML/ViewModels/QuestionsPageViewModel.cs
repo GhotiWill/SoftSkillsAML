@@ -41,7 +41,7 @@ namespace SoftSkillsAML.ViewModels
 
         public void OpenQuestion()
         {
-            if (SelectedQuestion == null) return;
+            if (SelectedQuestion == null || SelectedQuestion.IsAnswered) return;
             MainWindowViewModel.Instance.Page = new QuestionDetailsPageView(SelectedQuestion.QuestionId);
         }
 

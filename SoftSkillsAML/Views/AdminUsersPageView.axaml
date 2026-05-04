@@ -6,17 +6,24 @@
              x:Class="SoftSkillsAML.AdminUsersPageView"
              xmlns:vm="using:SoftSkillsAML.ViewModels"
              x:DataType="vm:AdminUsersPageViewModel">
-  <Grid Margin="16" RowDefinitions="Auto,Auto,*">
-    <TextBlock Text="Пользователи" FontSize="24" FontWeight="Bold" Margin="0,0,0,12"/>
-    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
-      <TextBox Watermark="Мин. возраст" Text="{Binding MinAge}" Width="120"/>
-      <TextBox Watermark="Мин. прогресс %" Text="{Binding MinProgress}" Width="140"/>
-      <Button Content="Применить фильтр" Command="{Binding ApplyFilters}"/>
-      <Button Content="Профиль игрока" Command="{Binding OpenProfile}"/>
-      <Button Content="Назад" Command="{Binding BackToStat}"/>
-    </StackPanel>
+  <Grid Margin="16" ColumnDefinitions="220,*" ColumnSpacing="16">
+    <Border Classes="card" Padding="12">
+      <StackPanel Spacing="10">
+        <TextBlock Text="Навигация" FontWeight="Bold" FontSize="18"/>
+        <Button Classes="navButton" Content="Профиль игрока" Command="{Binding OpenProfile}"/>
+        <Button Classes="navButton" Content="Назад" Command="{Binding BackToStat}" Background="#64748B"/>
+      </StackPanel>
+    </Border>
 
-    <DataGrid Grid.Row="2" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False">
+    <Grid Grid.Column="1" RowDefinitions="Auto,Auto,*">
+      <TextBlock Text="Пользователи" FontSize="24" FontWeight="Bold" Margin="0,0,0,12"/>
+      <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
+        <TextBox Watermark="Мин. возраст" Text="{Binding MinAge}" Width="120"/>
+        <TextBox Watermark="Мин. прогресс %" Text="{Binding MinProgress}" Width="140"/>
+        <Button Content="Применить фильтр" Command="{Binding ApplyFilters}"/>
+      </StackPanel>
+
+      <DataGrid Grid.Row="2" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False">
       <DataGrid.Columns>
         <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
         <DataGridTextColumn Header="Возраст" Binding="{Binding Age}"/>
@@ -34,6 +41,7 @@
           </DataGridTemplateColumn.CellEditingTemplate>
         </DataGridTemplateColumn>
       </DataGrid.Columns>
-    </DataGrid>
+      </DataGrid>
+    </Grid>
   </Grid>
 </UserControl>

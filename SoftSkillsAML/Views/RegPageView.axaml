@@ -7,32 +7,20 @@
 			 xmlns:vm="using:SoftSkillsAML.ViewModels"
 			 x:DataType="vm:RegPageViewModel"
 			 xmlns:conv="using:SoftSkillsAML.Converters">
-	<UserControl.Resources>
-		<conv:AssetsImageConverter x:Key="AIC"/>
-	</UserControl.Resources>
-	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
-		<TextBlock Text="Регистрация" HorizontalAlignment="Center"/>
-		<TextBox Text="{Binding NewUser.Login}" Watermark="Логин"/>
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-			<TextBox Text="{Binding Password}" Watermark="Пароль" PasswordChar="*" RevealPassword="{Binding IsPasswordVisible}" HorizontalAlignment="Stretch"/>
-			<Button Command="{Binding ChangePasswordVisibility}">
-				<Image Source="{Binding Eye, Converter={StaticResource AIC}}" Height="20"/>
-			</Button>
+	<UserControl.Resources><conv:AssetsImageConverter x:Key="AIC"/></UserControl.Resources>
+	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="14" Width="360">
+		<TextBlock Text="Регистрация" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
+		<TextBox Width="360" Height="42" Text="{Binding NewUser.Login}" Watermark="Логин"/>
+		<Grid ColumnDefinitions="*,52" Width="360" Height="42">
+			<TextBox Grid.Column="0" Text="{Binding Password}" Watermark="Пароль" PasswordChar="*" RevealPassword="{Binding IsPasswordVisible}"/>
+			<Button Grid.Column="1" Command="{Binding ChangePasswordVisibility}" Padding="0" Height="42"><Image Source="{Binding Eye, Converter={StaticResource AIC}}" Height="18"/></Button>
+		</Grid>
+		<ComboBox Width="360" Height="42" ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}" PlaceholderText="Пол"><ComboBox.ItemTemplate><DataTemplate><TextBlock Text="{Binding Name}"/></DataTemplate></ComboBox.ItemTemplate></ComboBox>
+		<CalendarDatePicker Width="360" Height="42" SelectedDate="{Binding NewUser.Birthday}" Watermark="дд.мм.гггг"/>
+		<Button Width="360" Height="42" Content="Создать аккаунт" Command="{Binding Reg}"/>
+		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="4">
+			<TextBlock Text="Уже есть аккаунт?" VerticalAlignment="Center"/>
+			<HyperlinkButton Content="Войти" Command="{Binding ToAuth}" VerticalAlignment="Center"/>
 		</StackPanel>
-		<ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding SelectedGender}" PlaceholderText="Пол" HorizontalAlignment="Stretch">
-			<ComboBox.ItemTemplate>
-				<DataTemplate>
-					<TextBlock Text="{Binding Name}"/>
-				</DataTemplate>
-			</ComboBox.ItemTemplate>
-		</ComboBox>
-		<CalendarDatePicker SelectedDate="{Binding NewUser.Birthday}" Watermark="дд.мм.гггг"/>
-		
-		<Button Content="Создать аккаунт" HorizontalAlignment="Center" Command="{Binding Reg}"/>
-		<TextBlock Text="Уже есть аккаунт?">
-			<InlineUIContainer>
-				<HyperlinkButton Content="Войти" Command="{Binding ToAuth}"/>
-			</InlineUIContainer>
-		</TextBlock>
 	</StackPanel>
 </UserControl>

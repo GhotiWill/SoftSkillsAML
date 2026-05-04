@@ -1,5 +1,7 @@
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
 using ReactiveUI;
@@ -95,7 +97,11 @@ namespace SoftSkillsAML.ViewModels
         public string Name { get; set; } = string.Empty;
         public int Percent { get; set; }
         public ISeries[] Series { get; private set; } = [];
-        public void BuildSeries() => Series = [new PieSeries<int> { Values = [Percent], Name = "Процент" }, new PieSeries<int> { Values = [100 - Percent], Name = "Остаток", IsHoverable = false }];
+        public void BuildSeries() => Series =
+        [
+            new PieSeries<int> { Values = [Percent], Name = "Процент", Fill = new SolidColorPaint(new SKColor(68, 160, 141)) },
+            new PieSeries<int> { Values = [100 - Percent], Name = "Остаток", IsHoverable = false, Fill = new SolidColorPaint(new SKColor(118, 75, 162)) }
+        ];
     }
 
     internal class AchievementListItem

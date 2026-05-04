@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using SoftSkillsAML.ViewModels;
 using System.Linq;
@@ -23,5 +24,10 @@ public partial class AdminUsersPageView : UserControl
         user.IsBlocked = checkBox.IsChecked == true;
         userItem.IsBlocked = user.IsBlocked;
         MainWindowViewModel.db.SaveChanges();
+    }
+
+    private void UserDoubleTapped(object? sender, TappedEventArgs e)
+    {
+        if (DataContext is AdminUsersPageViewModel vm) vm.OpenProfile();
     }
 }

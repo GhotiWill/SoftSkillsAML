@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Markup.Xaml;
 using SoftSkillsAML.ViewModels;
 
@@ -10,5 +11,10 @@ public partial class QuestionsPageView : UserControl
     {
         InitializeComponent();
         DataContext = new QuestionsPageViewModel(departmentId);
+    }
+
+    private void QuestionDoubleTapped(object? sender, TappedEventArgs e)
+    {
+        if (DataContext is QuestionsPageViewModel vm) vm.OpenQuestion();
     }
 }

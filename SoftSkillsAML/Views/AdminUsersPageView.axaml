@@ -10,8 +10,7 @@
     <Border Classes="card" Padding="12">
       <StackPanel Spacing="10">
         <TextBlock Text="Навигация" FontWeight="Bold" FontSize="18"/>
-        <Button Classes="navButton" Content="Профиль игрока" Command="{Binding OpenProfile}"/>
-        <Button Classes="navButton" Content="Назад" Command="{Binding BackToStat}" Background="#64748B"/>
+                <Button Classes="navButton" Content="Назад" Command="{Binding BackToStat}" Background="#64748B"/>
       </StackPanel>
     </Border>
 
@@ -23,7 +22,7 @@
         <Button Content="Применить фильтр" Command="{Binding ApplyFilters}"/>
       </StackPanel>
 
-      <DataGrid Grid.Row="2" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False">
+      <DataGrid Grid.Row="2" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" AutoGenerateColumns="False" DoubleTapped="UserDoubleTapped">
       <DataGrid.Columns>
         <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
         <DataGridTextColumn Header="Возраст" Binding="{Binding Age}"/>

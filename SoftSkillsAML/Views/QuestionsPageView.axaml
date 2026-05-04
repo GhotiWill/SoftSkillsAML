@@ -12,8 +12,7 @@
     <Border Classes="card" Padding="12">
       <StackPanel Spacing="10">
         <TextBlock Text="Навигация" FontWeight="Bold" FontSize="18"/>
-        <Button Classes="navButton" Content="Открыть задание" Command="{Binding OpenQuestion}"/>
-        <Button Classes="navButton" Content="Назад к направлениям" Command="{Binding BackToDepartments}" Background="#64748B"/>
+                <Button Classes="navButton" Content="Назад к направлениям" Command="{Binding BackToDepartments}" Background="#64748B"/>
       </StackPanel>
     </Border>
 
@@ -26,7 +25,7 @@
       </Border>
 
       <Border Grid.Row="1" Classes="card" Padding="12">
-        <ListBox ItemsSource="{Binding Questions}" SelectedItem="{Binding SelectedQuestion}" Background="Transparent" BorderThickness="0">
+        <ListBox ItemsSource="{Binding Questions}" SelectedItem="{Binding SelectedQuestion}" Background="Transparent" BorderThickness="0" DoubleTapped="QuestionDoubleTapped">
           <ListBox.ItemsPanel><ItemsPanelTemplate><WrapPanel Orientation="Horizontal" ItemWidth="408"/></ItemsPanelTemplate></ListBox.ItemsPanel>
           <ListBox.ItemTemplate>
             <DataTemplate>

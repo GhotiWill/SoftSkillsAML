@@ -11,7 +11,7 @@
 	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="14" Width="360">
 		<TextBlock Text="Регистрация" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
 		<TextBox Width="360" Height="42" Text="{Binding NewUser.Login}" Watermark="Логин"/>
-		<Grid ColumnDefinitions="*,52" Width="360" Height="42">
+		<Grid ColumnDefinitions="*,42" Width="360" Height="42">
 			<TextBox Grid.Column="0" Text="{Binding Password}" Watermark="Пароль" PasswordChar="*" RevealPassword="{Binding IsPasswordVisible}"/>
 			<Button Grid.Column="1" Command="{Binding ChangePasswordVisibility}" Padding="0" Height="42"><Image Source="{Binding Eye, Converter={StaticResource AIC}}" Height="18"/></Button>
 		</Grid>

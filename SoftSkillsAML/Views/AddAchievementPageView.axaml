@@ -6,7 +6,15 @@
              x:Class="SoftSkillsAML.AddAchievementPageView"
              xmlns:vm="using:SoftSkillsAML.ViewModels"
              x:DataType="vm:AddAchievementPageViewModel">
-  <Grid Margin="16" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+  <Grid Margin="16" ColumnDefinitions="220,*" ColumnSpacing="16">
+    <Border Classes="card" Padding="12">
+      <StackPanel Spacing="10">
+        <TextBlock Text="Навигация" FontWeight="Bold" FontSize="18"/>
+        <Button Classes="navButton" Content="Добавить" Command="{Binding AddAchievement}"/>
+        <Button Classes="navButton" Content="Назад" Command="{Binding BackToStat}" Background="#64748B"/>
+      </StackPanel>
+    </Border>
+    <Grid Grid.Column="1" RowDefinitions="Auto,Auto,Auto,Auto">
     <TextBlock Text="Добавление достижения" FontSize="24" FontWeight="Bold" Margin="0,0,0,12"/>
     <TextBox Grid.Row="1" Text="{Binding Name}" Watermark="Название" Margin="0,0,0,8"/>
     <TextBox Grid.Row="2" Text="{Binding Description}" Watermark="Описание" Height="120" AcceptsReturn="True" Margin="0,0,0,8"/>
@@ -16,9 +24,6 @@
       <TextBlock VerticalAlignment="Center" Text="{Binding ImageFileName}"/>
     </StackPanel>
 
-    <StackPanel Grid.Row="4" Orientation="Horizontal" Spacing="8">
-      <Button Content="Добавить" Command="{Binding AddAchievement}"/>
-      <Button Content="Назад" Command="{Binding BackToStat}"/>
-    </StackPanel>
+    </Grid>
   </Grid>
 </UserControl>

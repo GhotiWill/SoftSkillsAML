@@ -3,14 +3,53 @@
              x:Class="SoftSkillsAML.App"
              xmlns:local="using:SoftSkillsAML"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
-  
+
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+
+        <Style Selector="Window">
+            <Setter Property="Background" Value="#F4F7FB"/>
+        </Style>
+
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#4ecdc4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="18,10"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="Button.navButton">
+            <Setter Property="Width" Value="180"/>
+        </Style>
+
+        <Style Selector="TextBox, ComboBox, CalendarDatePicker">
+            <Setter Property="BorderBrush" Value="#4ecdc4"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
+        </Style>
+
+        <Style Selector="TextBox">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="10,8"/>
+        </Style>
+
+        <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+            <Setter Property="Background" Value="#4ecdc4"/>
+        </Style>
+
+        <Style Selector="Border.card">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="CornerRadius" Value="14"/>
+            <Setter Property="BorderBrush" Value="#E2E8F0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BoxShadow" Value="0 8 24 0 #140F172A"/>
+        </Style>
     </Application.Styles>
 </Application>

@@ -3,11 +3,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:conv="using:SoftSkillsAML.Converters"
+        xmlns:models="using:SoftSkillsAML.Models"
         mc:Ignorable="d" d:DesignWidth="420" d:DesignHeight="300"
         Width="420" Height="300"
         CanResize="False"
         WindowStartupLocation="CenterOwner"
         x:Class="SoftSkillsAML.AchievementAwardWindow"
+        x:DataType="models:Achievement"
         Title="Новое достижение">
   <Window.Resources>
     <conv:BytesToImageConverter x:Key="BytesToImageConverter"/>

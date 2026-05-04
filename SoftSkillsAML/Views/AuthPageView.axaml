@@ -13,7 +13,7 @@
 		<TextBox Width="360" Height="42" Text="{Binding Login}" Watermark="Логин"/>
 		<Grid ColumnDefinitions="*,52" Width="360" Height="42">
 			<TextBox Grid.Column="0" Text="{Binding Password}" Watermark="Пароль" PasswordChar="*" RevealPassword="{Binding IsPasswordVisible}"/>
-			<Button Grid.Column="1" Command="{Binding ChangePasswordVisibility}" Padding="0"><Image Source="{Binding Eye, Converter={StaticResource AIC}}" Height="18"/></Button>
+			<Button Grid.Column="1" Command="{Binding ChangePasswordVisibility}" Padding="0" Height="42"><Image Source="{Binding Eye, Converter={StaticResource AIC}}" Height="18"/></Button>
 		</Grid>
 		<Button Width="360" Height="42" Content="Войти" Command="{Binding Auth}"/>
 		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="4">

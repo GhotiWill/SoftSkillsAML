@@ -12,8 +12,8 @@
     <Border Classes="card" Padding="12">
       <StackPanel Spacing="10">
         <TextBlock Text="Навигация" FontWeight="Bold" FontSize="18"/>
-        <Button Content="Открыть задание" Command="{Binding OpenQuestion}"/>
-        <Button Content="Назад к направлениям" Command="{Binding BackToDepartments}" Background="#64748B"/>
+        <Button Classes="navButton" Content="Открыть задание" Command="{Binding OpenQuestion}"/>
+        <Button Classes="navButton" Content="Назад к направлениям" Command="{Binding BackToDepartments}" Background="#64748B"/>
       </StackPanel>
     </Border>
 

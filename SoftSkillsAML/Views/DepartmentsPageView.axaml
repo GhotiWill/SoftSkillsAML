@@ -10,9 +10,9 @@
   <UserControl.Resources><conv:BytesToImageConverter x:Key="BytesToImageConverter"/></UserControl.Resources>
   <Grid Margin="16" ColumnDefinitions="220,*" ColumnSpacing="16">
     <Border Classes="card" Padding="12"><StackPanel Spacing="10"><TextBlock Text="Навигация" FontWeight="Bold" FontSize="18"/>
-      <Button Content="Открыть задания" Command="{Binding OpenDepartment}"/>
-      <Button Content="Личный кабинет" Command="{Binding OpenProfile}"/>
-      <Button Content="Выйти" Command="{Binding Logout}" Background="#64748B"/>
+      <Button Classes="navButton" Content="Открыть задания" Command="{Binding OpenDepartment}"/>
+      <Button Classes="navButton" Content="Личный кабинет" Command="{Binding OpenProfile}"/>
+      <Button Classes="navButton" Content="Выйти" Command="{Binding Logout}" Background="#64748B"/>
     </StackPanel></Border>
     <Grid Grid.Column="1" RowDefinitions="Auto,*">
       <TextBlock FontSize="24" FontWeight="Bold" Text="Список направлений" Margin="0,0,0,12"/>

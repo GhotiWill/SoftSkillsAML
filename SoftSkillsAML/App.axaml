@@ -22,6 +22,12 @@
             <Setter Property="CornerRadius" Value="10"/>
             <Setter Property="Padding" Value="18,10"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style Selector="Button.navButton">
+            <Setter Property="Width" Value="180"/>
         </Style>
 
         <Style Selector="TextBox, ComboBox, CalendarDatePicker">

@@ -7,23 +7,21 @@
 			 xmlns:vm="using:SoftSkillsAML.ViewModels"
 			 x:DataType="vm:AuthPageViewModel"
 			 xmlns:conv="using:SoftSkillsAML.Converters">
-	<UserControl.Resources>
-		<conv:AssetsImageConverter x:Key="AIC"/>
-	</UserControl.Resources>
-	<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
-		<TextBlock Text="Авторизация" HorizontalAlignment="Center"/>
-		<TextBox Text="{Binding Login}" Watermark="Логин"/>
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
-			<TextBox Text="{Binding Password}" Watermark="Пароль" PasswordChar="*" RevealPassword="{Binding IsPasswordVisible}" HorizontalAlignment="Stretch"/>
-			<Button Command="{Binding ChangePasswordVisibility}">
-				<Image Source="{Binding Eye, Converter={StaticResource AIC}}" Height="20"/>
-			</Button>
+	<UserControl.Resources><conv:AssetsImageConverter x:Key="AIC"/></UserControl.Resources>
+	<Grid HorizontalAlignment="Center" VerticalAlignment="Center" ColumnDefinitions="Auto,32,Auto">
+		<Image Grid.Column="0" Source="/Assets/logo.png" Width="200" Height="200" VerticalAlignment="Center"/>
+		<StackPanel Grid.Column="2" Spacing="14" Width="360">
+			<TextBlock Text="Авторизация" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold"/>
+			<TextBox Width="360" Height="42" Text="{Binding Login}" Watermark="Логин"/>
+			<Grid ColumnDefinitions="*,42" Width="360" Height="42">
+				<TextBox Grid.Column="0" Text="{Binding Password}" Watermark="Пароль" PasswordChar="*" RevealPassword="{Binding IsPasswordVisible}"/>
+				<Button Grid.Column="1" Command="{Binding ChangePasswordVisibility}" Padding="0" Height="42"><Image Source="{Binding Eye, Converter={StaticResource AIC}}" Height="18"/></Button>
+			</Grid>
+			<Button Width="360" Height="42" Content="Войти" Command="{Binding Auth}"/>
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="4">
+				<TextBlock Text="Нет аккаунта?" VerticalAlignment="Center"/>
+				<HyperlinkButton Content="Зарегистрироваться" Command="{Binding ToReg}" VerticalAlignment="Center"/>
+			</StackPanel>
 		</StackPanel>
-		<Button Content="Войти" HorizontalAlignment="Center" Command="{Binding Auth}"/>
-		<TextBlock Text="Нет аккаунта?">
-			<InlineUIContainer>
-				<HyperlinkButton Content="Зарегистрироваться" Command="{Binding ToReg}"/>
-			</InlineUIContainer>
-		</TextBlock>
-	</StackPanel>
+	</Grid>
 </UserControl>

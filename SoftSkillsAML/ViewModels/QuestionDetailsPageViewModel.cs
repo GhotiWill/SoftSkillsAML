@@ -1,9 +1,12 @@
 using MsBox.Avalonia;
 using MsBox.Avalonia.Enums;
+using Avalonia;
+using Avalonia.Controls.ApplicationLifetimes;
 using ReactiveUI;
 using SoftSkillsAML.Models;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SoftSkillsAML.ViewModels
 {
@@ -49,8 +52,53 @@ namespace SoftSkillsAML.ViewModels
                 }
             }
 
+
+            await TryAwardItMasterAchievementAsync();
+
             MainWindowViewModel.db.SaveChanges();
             MainWindowViewModel.Instance.Page = new QuestionsPageView(Question.Department);
+        }
+
+        private async Task TryAwardItMasterAchievementAsync()
+        {
+            var department = MainWindowViewModel.db.Departments.FirstOrDefault(x => x.Id == Question.Department);
+            if (department == null || department.Name != "IT-мастерская") return;
+
+            var totalQuestions = MainWindowViewModel.db.Questions.Count(x => x.Department == Question.Department);
+            if (totalQuestions == 0) return;
+
+            var answeredQuestions = MainWindowViewModel.db.UserQuestions.Count(x => x.User == CurrentUserId && x.IsAnswered && x.QuestionNavigation.Department == Question.Department);
+            if (answeredQuestions < totalQuestions) return;
+
+            var achievement = MainWindowViewModel.db.Achievements.FirstOrDefault(x => x.Name == "Айтишник");
+            if (achievement == null) return;
+
+            var userAchievement = MainWindowViewModel.db.UserAchievements
+                .FirstOrDefault(x => x.User == CurrentUserId && x.Achievement == achievement.Id);
+
+            if (userAchievement == null)
+            {
+                MainWindowViewModel.db.UserAchievements.Add(new UserAchievement
+                {
+                    User = CurrentUserId,
+                    Achievement = achievement.Id,
+                    IsCompleted = true
+                });
+            }
+            else if (!userAchievement.IsCompleted)
+            {
+                userAchievement.IsCompleted = true;
+            }
+            else
+            {
+                return;
+            }
+
+            if (Application.Current?.ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop && desktop.MainWindow != null)
+            {
+                var dialog = new AchievementAwardWindow(achievement);
+                await dialog.ShowDialog(desktop.MainWindow);
+            }
         }
 
         public void BackToQuestions()

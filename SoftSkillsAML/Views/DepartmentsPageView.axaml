@@ -7,32 +7,18 @@
              x:Class="SoftSkillsAML.DepartmentsPageView"
              xmlns:vm="using:SoftSkillsAML.ViewModels"
              x:DataType="vm:DepartmentsPageViewModel">
-  <UserControl.Resources>
-    <conv:BytesToImageConverter x:Key="BytesToImageConverter"/>
-  </UserControl.Resources>
-  <Grid Margin="16" RowDefinitions="Auto,Auto,*">
-    <TextBlock FontSize="24" FontWeight="Bold" Text="Список направлений" Margin="0,0,0,12"/>
-    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8" Margin="0,0,0,12">
-      <Button Content="Открыть задания" Command="{Binding OpenDepartment}"/>
-      <Button Content="Личный кабинет" Command="{Binding OpenProfile}"/>
-      <Button Content="Выйти" Command="{Binding Logout}"/>
-    </StackPanel>
-    <ListBox Grid.Row="2" ItemsSource="{Binding Departments}" SelectedItem="{Binding SelectedDepartment}">
-      <ListBox.ItemsPanel>
-        <ItemsPanelTemplate>
-          <UniformGrid Rows="2"/>
-        </ItemsPanelTemplate>
-      </ListBox.ItemsPanel>
-      <ListBox.ItemTemplate>
-        <DataTemplate>
-          <Border BorderBrush="#DDD" BorderThickness="1" Padding="8" Margin="6">
-            <StackPanel Width="220" Spacing="8">
-              <Image Height="120" Stretch="UniformToFill" Source="{Binding Image, Converter={StaticResource BytesToImageConverter}}"/>
-              <TextBlock Text="{Binding Name}" FontWeight="Bold" TextWrapping="Wrap"/>
-            </StackPanel>
-          </Border>
-        </DataTemplate>
-      </ListBox.ItemTemplate>
-    </ListBox>
+  <UserControl.Resources><conv:BytesToImageConverter x:Key="BytesToImageConverter"/></UserControl.Resources>
+  <Grid Margin="16" ColumnDefinitions="220,*" ColumnSpacing="16">
+    <Border Classes="card" Padding="12"><StackPanel Spacing="10"><TextBlock Text="Навигация" FontWeight="Bold" FontSize="18"/>
+            <Button Classes="navButton" Content="Личный кабинет" Command="{Binding OpenProfile}"/>
+      <Button Classes="navButton" Content="Выйти" Command="{Binding Logout}" Background="#64748B"/>
+    </StackPanel></Border>
+    <Grid Grid.Column="1" RowDefinitions="Auto,*">
+      <TextBlock FontSize="24" FontWeight="Bold" Text="Список направлений" Margin="0,0,0,12"/>
+      <ListBox Grid.Row="1" ItemsSource="{Binding Departments}" SelectedItem="{Binding SelectedDepartment}" DoubleTapped="DepartmentDoubleTapped">
+        <ListBox.ItemsPanel><ItemsPanelTemplate><UniformGrid Rows="2"/></ItemsPanelTemplate></ListBox.ItemsPanel>
+        <ListBox.ItemTemplate><DataTemplate><Border BorderBrush="#764ba2" BorderThickness="1.5" Padding="8" Margin="6" CornerRadius="12"><StackPanel Width="220" Spacing="8"><Image Height="90" Stretch="UniformToFill" Source="{Binding Image, Converter={StaticResource BytesToImageConverter}}"/><TextBlock Text="{Binding Name}" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Center"/></StackPanel></Border></DataTemplate></ListBox.ItemTemplate>
+      </ListBox>
+    </Grid>
   </Grid>
 </UserControl>

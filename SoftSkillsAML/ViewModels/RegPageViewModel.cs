@@ -68,13 +68,6 @@ namespace SoftSkillsAML.ViewModels
                 return;
             }
 
-            if (DateTime.Today.CompareTo(NewUser.Birthday.AddYears(18)) <= 0)
-            {
-                var message = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Возраст меньше 18", ButtonEnum.Ok, Icon.Info);
-                await message.ShowAsync();
-                return;
-            }
-
             if (MainWindowViewModel.db.Users.Any(x => x.Login == NewUser.Login))
             {
                 var message2 = MessageBoxManager.GetMessageBoxStandard("Ошибка", "Логин уже занят", ButtonEnum.Ok, Icon.Info);

@@ -39,7 +39,7 @@ public partial class _43pBardakovUpContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=edu.pg.ngknn.ru;Port=5442;Database=43P_Bardakov_UP;Username=43P;Password=444444");
+        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=postgres;Username=postgres;Password=postgres");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -51,7 +51,9 @@ public partial class _43pBardakovUpContext : DbContext
 
             entity.HasIndex(e => e.Name, "achievements_unique").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('\"Diplom\".achievements_id_seq1'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Description)
                 .HasColumnType("character varying")
                 .HasColumnName("description");
@@ -67,7 +69,9 @@ public partial class _43pBardakovUpContext : DbContext
 
             entity.ToTable("answers", "Diplom");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('\"Diplom\".answers_id_seq1'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Image).HasColumnName("image");
             entity.Property(e => e.IsCorrect).HasColumnName("is_correct");
             entity.Property(e => e.IsImage).HasColumnName("is_image");
@@ -89,7 +93,9 @@ public partial class _43pBardakovUpContext : DbContext
 
             entity.HasIndex(e => new { e.Answer, e.SoftSkill }, "answer_soft_skills_unique").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('\"Diplom\".answer_soft_skills_id_seq1'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Answer).HasColumnName("answer");
             entity.Property(e => e.Points).HasColumnName("points");
             entity.Property(e => e.SoftSkill).HasColumnName("soft_skill");
@@ -111,11 +117,13 @@ public partial class _43pBardakovUpContext : DbContext
 
             entity.HasIndex(e => e.Name, "departments_unique").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
-            entity.Property(e => e.Image).HasColumnName("image");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('\"Diplom\".departments_id_seq1'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Description)
                 .HasColumnType("character varying")
                 .HasColumnName("description");
+            entity.Property(e => e.Image).HasColumnName("image");
             entity.Property(e => e.Name)
                 .HasColumnType("character varying")
                 .HasColumnName("name");
@@ -127,7 +135,9 @@ public partial class _43pBardakovUpContext : DbContext
 
             entity.ToTable("genders", "Diplom");
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('\"Diplom\".genders_id_seq1'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Name)
                 .HasColumnType("character varying")
                 .HasColumnName("name");
@@ -163,7 +173,9 @@ public partial class _43pBardakovUpContext : DbContext
 
             entity.HasIndex(e => e.Name, "soft_skills_unique").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('\"Diplom\".soft_skills_id_seq1'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Description)
                 .HasColumnType("character varying")
                 .HasColumnName("description");
@@ -181,7 +193,9 @@ public partial class _43pBardakovUpContext : DbContext
 
             entity.HasIndex(e => e.Login, "users_unique").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('\"Diplom\".users_id_seq1'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Birthday)
                 .HasColumnType("timestamp without time zone")
                 .HasColumnName("birthday");
@@ -206,7 +220,9 @@ public partial class _43pBardakovUpContext : DbContext
 
             entity.HasIndex(e => new { e.User, e.Achievement }, "user_achievements_unique").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('\"Diplom\".user_achievements_id_seq1'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Achievement).HasColumnName("achievement");
             entity.Property(e => e.IsCompleted).HasColumnName("is_completed");
             entity.Property(e => e.User).HasColumnName("user");
@@ -228,7 +244,9 @@ public partial class _43pBardakovUpContext : DbContext
 
             entity.HasIndex(e => new { e.User, e.Question }, "user_question_unique").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('\"Diplom\".user_question_id_seq1'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Answer).HasColumnName("answer");
             entity.Property(e => e.IsAnswered).HasColumnName("is_answered");
             entity.Property(e => e.Question).HasColumnName("question");
@@ -256,7 +274,9 @@ public partial class _43pBardakovUpContext : DbContext
 
             entity.HasIndex(e => new { e.User, e.SoftSkill }, "user_soft_skills_unique").IsUnique();
 
-            entity.Property(e => e.Id).HasColumnName("id");
+            entity.Property(e => e.Id)
+                .HasDefaultValueSql("nextval('\"Diplom\".user_soft_skills_id_seq1'::regclass)")
+                .HasColumnName("id");
             entity.Property(e => e.Points).HasColumnName("points");
             entity.Property(e => e.SoftSkill).HasColumnName("soft_skill");
             entity.Property(e => e.User).HasColumnName("user");
@@ -269,6 +289,17 @@ public partial class _43pBardakovUpContext : DbContext
                 .HasForeignKey(d => d.User)
                 .HasConstraintName("user_soft_skills_users_fk");
         });
+        modelBuilder.HasSequence("achievements_id_seq", "Diplom").HasMax(2147483647L);
+        modelBuilder.HasSequence("answer_soft_skills_id_seq", "Diplom").HasMax(2147483647L);
+        modelBuilder.HasSequence("answers_id_seq", "Diplom").HasMax(2147483647L);
+        modelBuilder.HasSequence("departments_id_seq", "Diplom").HasMax(2147483647L);
+        modelBuilder.HasSequence("genders_id_seq", "Diplom").HasMax(2147483647L);
+        modelBuilder.HasSequence("question_id_seq", "Diplom").HasMax(2147483647L);
+        modelBuilder.HasSequence("soft_skills_id_seq", "Diplom").HasMax(2147483647L);
+        modelBuilder.HasSequence("user_achievements_id_seq", "Diplom").HasMax(2147483647L);
+        modelBuilder.HasSequence("user_question_id_seq", "Diplom").HasMax(2147483647L);
+        modelBuilder.HasSequence("user_soft_skills_id_seq", "Diplom").HasMax(2147483647L);
+        modelBuilder.HasSequence("users_id_seq", "Diplom").HasMax(2147483647L);
 
         OnModelCreatingPartial(modelBuilder);
     }
